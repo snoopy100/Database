@@ -1,0 +1,5 @@
+- add codes to VTM.code
+- add fields to fxml to input data
+- add not null to db.sql
+- add dropdown menu of codes to enter into field
+- add list to textArea to add procedures that have been completed then parse each line and add to table
