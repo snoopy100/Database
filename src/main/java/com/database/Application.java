@@ -34,7 +34,7 @@ public class Application extends javafx.application.Application {
         //launch();
        try {
            String dbPath = "jdbc:h2:~/Desktop/myDB";
-           String scriptPath = "/Users/jacksonkotch/Desktop/Database/src/main/resources/com/database/db.sql";
+           String scriptPath = "src/main/resources/com/database/db.sql";
 
            Methods.dropTable("myTable", dbPath);
            Connection connection = DriverManager.getConnection(dbPath);
