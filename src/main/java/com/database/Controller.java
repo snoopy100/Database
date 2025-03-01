@@ -15,6 +15,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.*;
 import java.net.URL;
+import java.nio.Buffer;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -46,7 +47,15 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    public int doStuff() {
+    public int doStuff() throws Exception {
+        File dbFile = new File("DBName.txt");
+        BufferedReader br = new BufferedReader(new FileReader(dbFile));
+        if (dbFile.exists()) {
+            dbName = br.readLine();
+        } else {
+            dbName = null;
+        }
+
         if (fileDir == "/") {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Open database? " +"\n Path to database has not been selected", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
             alert.showAndWait();
@@ -55,16 +64,27 @@ public class Controller implements Initializable {
                 return 0;
             }
         }
+
+        if (dbName == null) {
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Open database? " +"\n Name for database has not been selected", ButtonType.YES, ButtonType.NO);
+            alert.showAndWait();
+
+            if (alert.getResult() == ButtonType.YES) {
+                dbName = "myDB";
+            } else if (alert.getResult() == ButtonType.NO) {
+                return 0;
+            }
+        }
+
         try {
             // String dbPath = "jdbc:h2:~/Desktop/myDB/myDB";
             File file = new File("DBName.txt");
             BufferedReader bufferedReadereader = new BufferedReader(new FileReader(file));
             String dbName = bufferedReadereader.readLine();
-            String dbPath = fileDir +dbName;
+            String dbPath = fileDir + "/" + dbName;
             String scriptPath = "src/main/resources/com/database/db.sql";
 
-            Methods.dropTable("myTable", dbPath);
-            Connection connection = DriverManager.getConnection(dbPath);
+            Connection connection = DriverManager.getConnection("jdbc:" + "h2:" + dbPath);
             FileReader reader = new FileReader(scriptPath);
             RunScript.execute(connection, reader);
             Statement s = connection.createStatement();
@@ -92,19 +112,10 @@ public class Controller implements Initializable {
         try {
             FileWriter writer = new FileWriter(file);
             writer.write(dbName);
+            writer.close();
         } catch (IOException e) {e.printStackTrace();}
     }
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        /*pane.setMinHeight(screenHeight);
-
-        bar.setMinWidth(screenWidth);
-        bar.setMinHeight(screenHeight * .1);
-        bar.setSpacing((double) (screenWidth / 4) /3);
-
-        openButton.prefWidthProperty().bind(bar.widthProperty().divide(4));
-        selectButton.prefWidthProperty().bind(bar.widthProperty().divide(4));
-        createButton.prefWidthProperty().bind(bar.widthProperty().divide(4)); */
-    }
+    public void initialize(URL url, ResourceBundle resourceBundle) {}
 }
