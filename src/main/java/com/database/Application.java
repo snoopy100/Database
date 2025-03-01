@@ -33,7 +33,7 @@ public class Application extends javafx.application.Application {
     public static void main(String[] args) {
         //launch();
        try {
-           String dbPath = "jdbc:h2:~/Desktop/myDB";
+           String dbPath = "jdbc:h2:~/Desktop/myDB/myDB";
            String scriptPath = "src/main/resources/com/database/db.sql";
 
            Methods.dropTable("myTable", dbPath);
