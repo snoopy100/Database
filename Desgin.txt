@@ -11,9 +11,11 @@ end goal for design of entry page
 |                                   |
 |                                   |
 | ETM visit : dropdown selection    |
-|              --------------|      |
+|                                   |
+|             |--------------|      |
 | Procedure : | EKG : 1 or 0 |      |
-|             | ~~~~~~~~~~~~~|      |
+|             | other        |      |
+|             | scroll       |      |
 |             |______________|      |
 |                                   |
 | Procedure Notes : ______________  |
