@@ -6,6 +6,7 @@ module com.database {
     requires java.sql;
     requires com.h2database;
     requires com.opencsv;
+    requires java.desktop;
 
     opens com.database to javafx.fxml;
     exports com.database;
