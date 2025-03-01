@@ -1,5 +1,5 @@
 package com.database;
 
-public class VTM {
+public class ETMVisit {
     public static int[] code;
 }
