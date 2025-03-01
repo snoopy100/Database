@@ -11,7 +11,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.util.Scanner;
+import java.sql.ResultSet;
 import org.h2.tools.RunScript;
 
 public class Application extends javafx.application.Application {
@@ -42,15 +44,22 @@ public class Application extends javafx.application.Application {
     }
 
     public static void main(String[] args) {
-        //launch();
+        launch();
 
         try {
             // opens up to db on ~/Desktop
-            //Connection connection = DriverManager.getConnection("jdbc:h2:~/Desktop/myDB");
-            Connection connection = DriverManager.getConnection("jdbc:h2:mem:");
+            Connection connection = DriverManager.getConnection("jdbc:h2:~/Desktop/myDB");
             FileReader reader = new FileReader("/Users/jacksonkotch/Desktop/Database/src/main/resources/com/database/db.sql");
             RunScript.execute(connection, reader);
-            System.out.print("connectin  is valid : " + connection.isValid(0));
+
+            PreparedStatement ps = connection.prepareStatement("SELECT * FROM DB WHERE NAME LIKE ?");
+            ps.setString(1,"taco");
+            ResultSet resultset = ps.executeQuery();
+            while (resultset.next()) {
+                System.out.println(resultset.getInt("id") + resultset.getString("name"));
+            }
+
+            System.out.print("connectin  is valid : " + connection.isValid(50));
         } catch (Exception e) {e.printStackTrace();}
     }
 }

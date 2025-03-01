@@ -1,3 +1,7 @@
-create table if not exists DB (id identity primary key, name varchar(25) not null);
-truncate table DB;
-insert into DB (id, name) values (1, 'taco');
+CREATE TABLE IF NOT EXISTS DB (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(25) NOT NULL
+);
+TRUNCATE TABLE DB;
+INSERT INTO DB (name) VALUES ('taco');
+INSERT INTO Db (name) VALUES ('tacobell');
