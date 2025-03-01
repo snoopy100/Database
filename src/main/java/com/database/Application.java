@@ -24,28 +24,13 @@ public class Application extends javafx.application.Application {
         URL url = getClass().getResource("/com/database/view.fxml");
 
         FXMLLoader fxmlLoader = new FXMLLoader(url);
-        Scene scene = new Scene(fxmlLoader.load(), 320, 320);
+        Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Title Goes Here");
         stage.setScene(scene);
         stage.show();
     }
 
     public static void main(String[] args) {
-        //launch();
-       try {
-           String dbPath = "jdbc:h2:~/Desktop/myDB/myDB";
-           String scriptPath = "src/main/resources/com/database/db.sql";
-
-           Methods.dropTable("myTable", dbPath);
-           Connection connection = DriverManager.getConnection(dbPath);
-           FileReader reader = new FileReader(scriptPath);
-           RunScript.execute(connection, reader);
-           Statement s = connection.createStatement();
-           ResultSet resultset = s.executeQuery("Show columns from mytable");
-           while (resultset.next()) {
-               System.out.println(resultset.getString(1));
-           }
-           System.out.print("connectin  is valid : " + connection.isValid(20));
-       } catch (Exception e) {e.printStackTrace();}
+        launch();
     }
 }
