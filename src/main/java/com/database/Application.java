@@ -9,6 +9,7 @@ import java.lang.ProcessBuilder;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -36,8 +37,10 @@ public class Application extends javafx.application.Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        URL url = getClass().getResource("/com/database/view.fxml");
+
+        FXMLLoader fxmlLoader = new FXMLLoader(url);
+        Scene scene = new Scene(fxmlLoader.load(), 320, 320);
         stage.setTitle("Title Goes Here");
         stage.setScene(scene);
         stage.show();
@@ -46,14 +49,14 @@ public class Application extends javafx.application.Application {
     public static void main(String[] args) {
         launch();
 
-        try {
+       try {
             // opens up to db on ~/Desktop
             Connection connection = DriverManager.getConnection("jdbc:h2:~/Desktop/myDB");
             FileReader reader = new FileReader("/Users/jacksonkotch/Desktop/Database/src/main/resources/com/database/db.sql");
             RunScript.execute(connection, reader);
 
-            PreparedStatement ps = connection.prepareStatement("SELECT * FROM DB WHERE NAME LIKE ?");
-            ps.setString(1,"taco");
+            PreparedStatement ps = connection.prepareStatement("SELECT * FROM CSVREAD('test.csv');");
+            //ps.setString(1,"taco");
             ResultSet resultset = ps.executeQuery();
             while (resultset.next()) {
                 System.out.println(resultset.getInt("id") + resultset.getString("name"));
