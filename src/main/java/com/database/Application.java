@@ -45,7 +45,9 @@ public class Application extends javafx.application.Application {
         //launch();
 
         try {
-            Connection connection = DriverManager.getConnection("jdbc:h2:~/Desktop/myDB");
+            // opens up to db on ~/Desktop
+            //Connection connection = DriverManager.getConnection("jdbc:h2:~/Desktop/myDB");
+            Connection connection = DriverManager.getConnection("jdbc:h2:mem:");
             FileReader reader = new FileReader("/Users/jacksonkotch/Desktop/Database/src/main/resources/com/database/db.sql");
             RunScript.execute(connection, reader);
             System.out.print("connectin  is valid : " + connection.isValid(0));
