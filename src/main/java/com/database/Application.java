@@ -24,7 +24,7 @@ public class Application extends javafx.application.Application {
         URL url = getClass().getResource("/com/database/view.fxml");
 
         FXMLLoader fxmlLoader = new FXMLLoader(url);
-        Scene scene = new Scene(fxmlLoader.load(), 320, 320);
+        Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Title Goes Here");
         stage.setScene(scene);
         stage.show();

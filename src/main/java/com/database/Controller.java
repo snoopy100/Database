@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 import org.h2.tools.RunScript;
 
 import java.io.FileReader;
@@ -13,9 +14,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class Controller {
-    @FXML ButtonBar bar;
-    @FXML
-    Button button;
+    @FXML HBox bar;
+    @FXML Button button;
 
     @FXML
     public void doStuff() {
