@@ -5,6 +5,7 @@ module com.database {
     requires com.dlsc.formsfx;
     requires java.sql;
     requires com.h2database;
+    requires com.opencsv;
 
     opens com.database to javafx.fxml;
     exports com.database;
