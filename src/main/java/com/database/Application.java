@@ -21,9 +21,9 @@ public class Application extends javafx.application.Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        URL url = getClass().getResource("/com/database/view.fxml");
+        //URL url = getClass().getResource("/com/database/view.fxml");
 
-        FXMLLoader fxmlLoader = new FXMLLoader(url);
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/database/Field.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Title Goes Here");
         stage.setScene(scene);
