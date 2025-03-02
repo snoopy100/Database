@@ -34,7 +34,7 @@ public class Controller implements Initializable {
     @FXML AnchorPane pane;
 
     DirectoryChooser chooser;
-    String fileDir = "/";
+    String fileDir = "~/";
     String dbName;
 
     @FXML
@@ -56,7 +56,7 @@ public class Controller implements Initializable {
             dbName = null;
         }
 
-        if (fileDir == "/") {
+        if (fileDir == "~/") {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Open database? " +"\n Path to database has not been selected", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
             alert.showAndWait();
 

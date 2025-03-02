@@ -14,6 +14,22 @@ import java.sql.*;
 
 public class Methods {
 
+    public static File prefixFile(File oldFile, String prefix) throws Exception {
+        BufferedReader reader = new BufferedReader(new FileReader(oldFile));
+        StringBuilder contents = new StringBuilder();
+        while (reader.readLine() != null) {
+            contents.append(reader.readLine());
+        }
+        String[] command = {"rm " + oldFile.getAbsolutePath()};
+        File newFile = new File(oldFile.getAbsolutePath());
+        Methods.runCommands(command);
+        FileWriter writer = new FileWriter(newFile);
+        writer.write(contents.toString());
+        writer.close();
+
+        return newFile;
+    }
+
     public static void dropTable(String tableName, String dbPath) {
         try {
             Connection connection = DriverManager.getConnection(dbPath);
