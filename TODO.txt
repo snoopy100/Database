@@ -1,4 +1,4 @@
-- and manifest and find a way to package to jar
+- modify fxml to resize elemnts based on window size
 - add codes to VTM.code
 - add fields to fxml to input data
 - add not null to db.sql
