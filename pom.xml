@@ -72,9 +72,20 @@
                     <directory>src/main/resources</directory>
                 </resource>
             </resources>
-        <plugins>
-                 <build>
     <plugins>
+        <plugin>
+	    <groupId>org.apache.maven.plugins</groupId>
+	    <artifactId>maven-jar-plugin</artifactId>
+	    <version>3.1.0</version>
+	    <configuration>
+	        <archive>
+		    <manifest>
+			<!-- <addClassPath>true</addClassPath> -->
+			<mainClass>com.database.Main</mainClass>
+		    </manifest>
+		</archive>
+	    </configuration>
+	</plugin>
         <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-assembly-plugin</artifactId>
@@ -94,10 +105,8 @@
                 </execution>
             </executions>
         </plugin>
-    </plugins>
-</build>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
+	<plugin>
+	<groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.11.0</version>
                 <configuration>

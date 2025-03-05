@@ -5,6 +5,6 @@ import javafx.scene.layout.*;
 
 public class FieldController {
     @FXML AnchorPane pane;
-    @FXML TextField nameField;
-    @FXML TextField MRNField;
+    //@FXML TextField nameField;
+    //@FXML TextField MRNField;
 }
