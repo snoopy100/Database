@@ -9,14 +9,14 @@
 
 <AnchorPane fx:id="pane" prefHeight="600" prefWidth="400" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.database.FieldController">
    <children>
-      <TextField alignment="TOP_LEFT" layoutX="86.0" layoutY="65.0" prefHeight="37.0" prefWidth="289.0">
+      <TextField alignment="TOP_LEFT" layoutX="86.0" layoutY="65.0" prefHeight="37.0" prefWidth="289.0" fx:id="nameField">
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </TextField>
       <Label alignment="CENTER" layoutX="25.0" layoutY="65.0" prefHeight="37.0" prefWidth="61.0" style="-fx-background-color: lightgray" text="Name:" />
 
-      <TextField alignment="TOP_LEFT" layoutX="86.0" layoutY="124.0" prefHeight="37.0" prefWidth="289.0">
+      <TextField alignment="TOP_LEFT" layoutX="86.0" layoutY="124.0" prefHeight="37.0" prefWidth="289.0" fx:id="MRNField">
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>

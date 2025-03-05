@@ -21,8 +21,8 @@ public class Application extends javafx.application.Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        URL url = getClass().getResource("/com/database/view.fxml");
-	//URL url = getClass().getResource("/com/database/Field.fxml");
+        //URL url = getClass().getResource("/com/database/view.fxml");
+	URL url = getClass().getResource("/com/database/Field.fxml");
         
 	FXMLLoader fxmlLoader = new FXMLLoader(url);
         Scene scene = new Scene(fxmlLoader.load());
