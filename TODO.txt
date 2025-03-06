@@ -1,4 +1,5 @@
-- modify fxml to resize elemnts based on window size
+- modify fxml to ideal size based on window
+- have anchorpane set size based on size of stage (for dealing with window managers and other cases)
 - add codes to VTM.code
 - add fields to fxml to input data
 - add not null to db.sql
