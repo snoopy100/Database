@@ -1,12 +1,15 @@
 package com.database;
 
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.geometry.Insets;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import org.h2.tools.RunScript;
@@ -15,14 +18,13 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.*;
 import java.net.URL;
-import java.nio.Buffer;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ResourceBundle;
 
-public class Controller implements Initializable {
+public class ViewController implements Initializable {
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     int screenWidth = (int) screenSize.getWidth();
     int screenHeight = (int) screenSize.getHeight();
@@ -32,10 +34,22 @@ public class Controller implements Initializable {
     @FXML Button selectButton;
     @FXML Button createButton;
     @FXML AnchorPane pane;
+    @FXML Button changeButton;
 
     DirectoryChooser chooser;
     String fileDir = "~/";
     String dbName;
+
+    public void goToField(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(Application.class.getResource("Field.fxml"));
+        AnchorPane root = loader.load();
+        Scene scene = new Scene(root);
+
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
 
     @FXML
     public void select(Event e) {
@@ -47,7 +61,7 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    public int doStuff() throws Exception {
+    public int open(ActionEvent actionEvent) throws Exception {
         File dbFile = new File("DBName.txt");
         BufferedReader br = new BufferedReader(new FileReader(dbFile));
         if (dbFile.exists()) {
@@ -94,6 +108,8 @@ public class Controller implements Initializable {
             }
             System.out.print("connectin  is valid : " + connection.isValid(20));
         } catch (Exception e) {e.printStackTrace();}
+
+        goToField(actionEvent);
         return 0;
     }
 

@@ -9,6 +9,13 @@
 <?import javafx.scene.layout.HBox?>
 
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.TextArea?>
+<?import com.dlsc.formsfx.view.controls.SimpleCheckBoxControl?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.ScrollBar?>
+<?import javafx.scene.layout.VBox?>
 <AnchorPane fx:id="pane" prefHeight="600" prefWidth="400" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.database.FieldController">
    <children>
    <HBox alignment="TOP_CENTER" layoutX="25.0" layoutY="14.0" prefHeight="40.0" prefWidth="350.0" style="-fx-background-color: lightgray;">
@@ -50,10 +57,15 @@
       </TextField>
 
       <Label alignment="CENTER" layoutX="25.0" layoutY="259.0" prefHeight="37.0" prefWidth="61.0" style="-fx-background-color: lightgray" text="ETM Visit: " />
-      <ComboBox fx:id="dropDown" layoutX="86.0" layoutY="259.0" prefHeight="37.0" prefWidth="289.0" style="-fx-background-color: lightblue">
-         <!-- <padding>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </padding> -->
+      <ComboBox fx:id="dropDown" promptText="Enter ETM Visit Code" layoutX="86.0" layoutY="259.0" prefHeight="36.0" prefWidth="289.0" style="-fx-background-color: lightblue">
       </ComboBox>
+
+      <ScrollPane layoutX="25" layoutY="320" prefHeight="400" prefWidth="340">
+         <VBox spacing="10" fx:id="CheckBoxContainer">
+            <CheckBox text="taco"/>
+            <CheckBox text="not a taco"/>
+         </VBox>
+      </ScrollPane>
+
    </children>
 </AnchorPane>

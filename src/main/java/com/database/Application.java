@@ -21,14 +21,13 @@ public class Application extends javafx.application.Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        //URL url = getClass().getResource("/com/database/view.fxml");
-	    //URL url = getClass().getResource("Field.fxml");
-        
-	    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Field.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
+	    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 428);
         stage.setTitle("Title Goes Here");
         stage.setScene(scene);
         stage.show();
+
+        System.out.println(stage.getWidth() + "\n" + stage.getHeight());
     }
 
     public static void main(String[] args) {

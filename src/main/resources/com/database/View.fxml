@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="pane" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.database.ViewController"
+            prefWidth="800" prefHeight="428">
+    <children>
+        <HBox fx:id="bar" layoutX="0" layoutY="0" prefHeight="100" style="-fx-background-color: gray; -fx-padding: 25;" spacing="150"
+              AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+            <Button fx:id="openButton" HBox.hgrow="ALWAYS" mnemonicParsing="false" onAction="#open" text="Open" prefHeight="50" prefWidth="150"/>
+            <Button fx:id="selectButton" HBox.hgrow="ALWAYS" mnemonicParsing="false" onAction="#select" text="Select Location" prefHeight="50" prefWidth="150"/>
+            <Button fx:id="createButton" HBox.hgrow="ALWAYS" mnemonicParsing="false" onAction="#createDB" text="Create New" prefHeight="50" prefWidth="150"/>
+        </HBox>
+    </children>
+</AnchorPane>
