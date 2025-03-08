@@ -1,11 +1,6 @@
-- add prompt text to ComboBox
 - fix ComboBox to be consistent with other TextFields
-- modify fxml to ideal size based on window
+- modify fxml to ideal size based on window (maybe change goal later)
 - have anchorpane set size based on size of stage (for dealing with window managers and other cases)
-- add codes to VTM.code
-- add fields to fxml to input data
 - add not null to db.sql
-- add dropdown menu of codes to enter into field
 - add list to textArea to add procedures that have been completed then parse each line and add to table
 - add option to quickly import many rows by copying off wxcel spreadsheet as csv and parsing them and adding them to database.
-- move dbname text file to resources

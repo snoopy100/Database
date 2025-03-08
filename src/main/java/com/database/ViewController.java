@@ -74,7 +74,7 @@ public class ViewController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Open database? " +"\n Path to database has not been selected", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
             alert.showAndWait();
 
-            if (alert.getResult() == ButtonType.NO) {
+            if (alert.getResult() != ButtonType.YES) {
                 return 0;
             }
         }
@@ -85,7 +85,7 @@ public class ViewController implements Initializable {
 
             if (alert.getResult() == ButtonType.YES) {
                 dbName = "myDB";
-            } else if (alert.getResult() == ButtonType.NO) {
+            } else {
                 return 0;
             }
         }
