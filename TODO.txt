@@ -1,3 +1,4 @@
+- change hashmap in fieldcontroller.save() to arraykist to aid in not havingg to implement index myself
 - add method to FieldController to take data from fields and add to sql query to run against h2 database
 - fix ComboBox to be consistent with other TextFields
 - modify fxml to ideal size based on window (maybe change goal later)
