@@ -1,8 +1,5 @@
 - add slected checlboxes to query and find a way to have a field in db myTable to store options
     maybe just a bunch of boolean fields
-- add method to FieldController to take data from fields and add to sql query to run against h2 database
-- fix ComboBox to be consistent with other TextFields
+- finish method in fieldcobtroller to save entry / add checkboxes to query
 - modify fxml to ideal size based on window (maybe change goal later)
-- have anchorpane set size based on size of stage (for dealing with window managers and other cases)
-- add not null to db.sql
 - add option to quickly import many rows by copying off wxcel spreadsheet as csv and parsing them and adding them to database.
