@@ -1,6 +1,7 @@
+- change hashmap in fieldcontroller.save() to arraykist to aid in not havingg to implement index myself
+- add method to FieldController to take data from fields and add to sql query to run against h2 database
 - fix ComboBox to be consistent with other TextFields
 - modify fxml to ideal size based on window (maybe change goal later)
 - have anchorpane set size based on size of stage (for dealing with window managers and other cases)
 - add not null to db.sql
-- add list to textArea to add procedures that have been completed then parse each line and add to table
 - add option to quickly import many rows by copying off wxcel spreadsheet as csv and parsing them and adding them to database.
