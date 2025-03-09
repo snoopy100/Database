@@ -2,12 +2,11 @@ package com.database;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class FieldController {
     @FXML TextField MRNField;
@@ -33,30 +32,67 @@ public class FieldController {
         String name;
         LocalDate date;
         String MRN;
-        // and add class ETM for the checkboxes
-        if (nameField != null) {
+        String ETM;
+        ArrayList<String> nullResponses = new ArrayList<String>();
+
+        // hashmap storing id of button from vbox.children and boolean if box has been checked
+        HashMap<Integer, Boolean> procedures = new HashMap<Integer, Boolean>();
+        for (int i = 0; i < CheckBoxContainer.getChildren().size(); i++) {
+            if (((CheckBox) CheckBoxContainer.getChildren().get(i)).isSelected()) {
+                procedures.put(i, ((CheckBox) CheckBoxContainer.getChildren().get(i)).isSelected());
+            }
+        }
+
+        // Check if fields are filled in, if not, add them to the nullResponses list
+        if (nameField.getText() != null && !nameField.getText().isEmpty()) {
             name = nameField.getText();
         } else {
-           // show prompt dialog
+            nullResponses.add("Name");
         }
 
-        if (dateField != null) {
+        if (dateField.getValue() != null) {
             date = dateField.getValue();
         } else {
-            // show prompt dialog
+            nullResponses.add("Date");
         }
 
-        if (MRNField.getText() != null) {
+        if (MRNField.getText() != null && !MRNField.getText().isEmpty()) {
             MRN = MRNField.getText();
         } else {
-            // show prompt dialog
+            nullResponses.add("MRN");
         }
+
+        if (dropDown.getValue() != null) {
+            ETM = dropDown.getValue().toString();
+        } else {
+            nullResponses.add("ETM");
+        }
+
+        // Create ETM instance and print checkbox responses
         ETM etm = new ETM(CheckBoxContainer);
         etm.printResponse();
-        // add to sql query and run
-        // example query
-        /* Connection connection = DriverManager.getConnection("jdbc:" + "h2:" + database path);
-            Statement s = connection.createStatement();
-            ResultSet resultset = s.executeQuery(do stuff); */
+        // Convert ArrayList to String array and call nullPrompt
+        if (procedures.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Don't forget to check all the procedure boxes");
+            alert.showAndWait();
+        }
+
+        if (nullResponses.toArray().length > 0) {
+            nullPrompt(nullResponses.toArray(new String[0]));
+        }
+        // now the entries shoudl have been filled
+
+        // now implement savig entry to sql query then runningit against h2 databse
+    }
+
+
+    public void nullPrompt(String[] nullResponses) {
+        // add dialog with aray in text
+        StringBuilder note = new StringBuilder();
+        for (int i = 0; i < nullResponses.length; i++) {
+            note.append(nullResponses[i] + "\n");
+        }
+        Alert alert = new Alert(Alert.AlertType.ERROR, "Warning: Value has not been entered for \n" + note);
+        alert.showAndWait();
     }
 }
