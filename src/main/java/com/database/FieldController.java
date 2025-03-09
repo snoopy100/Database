@@ -36,10 +36,10 @@ public class FieldController {
         ArrayList<String> nullResponses = new ArrayList<String>();
 
         // hashmap storing id of button from vbox.children and boolean if box has been checked
-        HashMap<Integer, Boolean> procedures = new HashMap<Integer, Boolean>();
+        ArrayList<Boolean> procedures = new ArrayList<Boolean>();
         for (int i = 0; i < CheckBoxContainer.getChildren().size(); i++) {
             if (((CheckBox) CheckBoxContainer.getChildren().get(i)).isSelected()) {
-                procedures.put(i, ((CheckBox) CheckBoxContainer.getChildren().get(i)).isSelected());
+                procedures.add(((CheckBox) CheckBoxContainer.getChildren().get(i)).isSelected());
             }
         }
 
@@ -69,20 +69,28 @@ public class FieldController {
         }
 
         // Create ETM instance and print checkbox responses
-        ETM etm = new ETM(CheckBoxContainer);
+        ETM etm = new ETM(CheckBoxContainer, dropDown);
         etm.printResponse();
         // Convert ArrayList to String array and call nullPrompt
         if (procedures.isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Don't forget to check all the procedure boxes");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Don't forget to check off all the procedure completed");
             alert.showAndWait();
         }
 
         if (nullResponses.toArray().length > 0) {
             nullPrompt(nullResponses.toArray(new String[0]));
+            return;
         }
+        etm.setCode();
         // now the entries shoudl have been filled
 
         // now implement savig entry to sql query then runningit against h2 databse
+        StringBuilder queryString = new StringBuilder();
+        queryString.append("INSERT INTO myTable (Date, Name, ETM_Visit, MRN) VALUES ");
+        queryString.append("(" + dateField.getValue().toString() + ", " + nameField.getText() + ", " + etm.getCode() + ", " + MRNField.getText() + ");");
+        // add sleected chkecboxes in there as well
+
+        System.out.println(queryString.toString());
     }
 
 
