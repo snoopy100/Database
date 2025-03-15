@@ -37,8 +37,9 @@ public class ViewController implements Initializable {
     @FXML Button changeButton;
 
     DirectoryChooser chooser;
-    String fileDir = "~/";
+    String fileDir = "~";
     String dbName;
+    public String dbPath;
 
     public void goToField(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(Application.class.getResource("Field.fxml"));
@@ -70,7 +71,7 @@ public class ViewController implements Initializable {
             dbName = null;
         }
 
-        if (fileDir == "~/") {
+        if (fileDir == "~") {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Open database? " +"\n Path to database has not been selected", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
             alert.showAndWait();
 
@@ -95,7 +96,7 @@ public class ViewController implements Initializable {
             File file = new File("DBName.txt");
             BufferedReader bufferedReadereader = new BufferedReader(new FileReader(file));
             String dbName = bufferedReadereader.readLine();
-            String dbPath = fileDir + "/" + dbName;
+            dbPath = fileDir + "/" + dbName;
             String scriptPath = "src/main/resources/com/database/db.sql";
 
             Connection connection = DriverManager.getConnection("jdbc:" + "h2:" + dbPath);

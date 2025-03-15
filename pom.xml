@@ -129,14 +129,11 @@
                 <executions>
                     <execution>
                         <id>default-cli</id>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
                         <configuration>
                             <mainClass>com.database.Main</mainClass>
-                            <jvmArgs>
-                                <jvmArg>--module-path</jvmArg>
-                                <jvmArg>${javafx.module.path}</jvmArg> <!-- Define the JavaFX module path -->
-                                <jvmArg>--add-modules</jvmArg>
-                                <jvmArg>javafx.controls,javafx.fxml</jvmArg>
-                            </jvmArgs>
                         </configuration>
                     </execution>
                 </executions>

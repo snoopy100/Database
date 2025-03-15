@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="pane" prefHeight="600" prefWidth="400" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.database.FieldController">
+   <children>
+   <HBox alignment="TOP_CENTER" layoutX="25.0" layoutY="14.0" prefHeight="40.0" prefWidth="350.0" style="-fx-background-color: lightgray;">
+      <Button fx:id="viewButton" mnemonicParsing="false" text="View Other Entries">
+         <HBox.margin>
+            <Insets right="20.0" />
+         </HBox.margin></Button>
+      <Button fx:id="saveButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#save" text="Save Entry">
+         <HBox.margin>
+            <Insets left="20.0" />
+         </HBox.margin></Button>
+      <padding>
+         <Insets bottom="10.0" top="10.0" />
+      </padding>
+      <opaqueInsets>
+         <Insets right="20.0" />
+      </opaqueInsets>
+   </HBox>
+
+      <Label alignment="CENTER" layoutX="25.0" layoutY="79.0" prefHeight="37.0" prefWidth="61.0" style="-fx-background-color: lightgray" text="Name:" />
+      <TextField fx:id="nameField" alignment="TOP_LEFT" layoutX="86.0" layoutY="80.0" prefHeight="37.0" prefWidth="289.0">
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </TextField>
+
+      <Label alignment="CENTER" layoutX="25.0" layoutY="141.0" prefHeight="37.0" prefWidth="61.0" style="-fx-background-color: lightgray" text="MRN: " />
+      <TextField fx:id="MRNField" alignment="TOP_LEFT" layoutX="86.0" layoutY="141.0" prefHeight="37.0" prefWidth="289.0">
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </TextField>
+
+      <Label alignment="CENTER" layoutX="25.0" layoutY="202.0" prefHeight="37.0" prefWidth="61.0" style="-fx-background-color: lightgray" text="Date: " />
+      <DatePicker promptText="Use calendar symbol to select date" fx:id="dateField" layoutX="86.0" layoutY="202.0" prefHeight="36.0" prefWidth="289.0">
+      </DatePicker>
+
+      <Label alignment="CENTER" layoutX="25.0" layoutY="259.0" prefHeight="37.0" prefWidth="61.0" style="-fx-background-color: lightgray" text="ETM Visit: " />
+      <ComboBox fx:id="dropDown" layoutX="86.0" layoutY="259.0" prefHeight="36.0" prefWidth="289.0" promptText="Enter ETM Visit Code" style="-fx-background-color: lightblue">
+      </ComboBox>
+
+      <ScrollPane layoutX="25" layoutY="320" prefHeight="400" prefWidth="340">
+         <VBox fx:id="CheckBoxContainer" spacing="10">
+            <CheckBox text="taco" />
+            <CheckBox text="not a taco" />
+         </VBox>
+      </ScrollPane>
+
+   </children>
+</AnchorPane>

@@ -4,6 +4,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import org.h2.tools.RunScript;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -85,12 +94,37 @@ public class FieldController {
         // now the entries shoudl have been filled
 
         // now implement savig entry to sql query then runningit against h2 databse
+        StringBuilder etmString = new StringBuilder();
+        for (int i = 0; i < CheckBoxContainer.getChildren().size(); i++) {
+            CheckBox box = (CheckBox) CheckBoxContainer.getChildren().get(i);
+            if (box.isSelected()) {
+                etmString.append("1");
+            } else {
+                etmString.append("0");
+            }
+        }
+
         StringBuilder queryString = new StringBuilder();
-        queryString.append("INSERT INTO myTable (Date, Name, ETM_Visit, MRN) VALUES ");
-        queryString.append("(" + dateField.getValue().toString() + ", " + nameField.getText() + ", " + etm.getCode() + ", " + MRNField.getText() + ");");
-        // add sleected chkecboxes in there as well
+        queryString.append("INSERT INTO myTable (Date, Name, ETM_Visit, MRN, ETM_Visit,) VALUES ");
+        queryString.append("(" + dateField.getValue().toString() + ", " + nameField.getText() + ", " + etm.getCode() + ", " + MRNField.getText() + "," + etmString + ");");
 
         System.out.println(queryString.toString());
+
+        try {
+            ViewController con = new ViewController();
+            // String dbPath = "jdbc:h2:~/Desktop/myDB/myDB";
+            File file = new File("DBName.txt");
+            BufferedReader bufferedReadereader = new BufferedReader(new FileReader(file));
+            String dbName = bufferedReadereader.readLine();
+
+            Connection connection = DriverManager.getConnection("jdbc:" + "h2:" + con.dbPath);
+            Statement s = connection.createStatement();
+            ResultSet resultset = s.executeQuery(queryString.toString());
+            while (resultset.next()) {
+                System.out.println(resultset.getString(1));
+            }
+            System.out.print("connectin  is valid : " + connection.isValid(20));
+        } catch (Exception e) {e.printStackTrace();}
     }
 
 
