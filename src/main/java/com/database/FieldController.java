@@ -1,14 +1,15 @@
 package com.database;
 
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.*;
-import javafx.scene.layout.*;
+//import javafx.fxml.FXML;
+//import javafx.fxml.Initializable;
+//import javafx.scene.control.*;
+//import javafx.scene.layout.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class FieldController {
+    /*
     @FXML TextField MRNField;
     @FXML DatePicker dateField;
     @FXML TextField nameField;
@@ -22,10 +23,10 @@ public class FieldController {
 	    dropDown.getItems().setAll(ETM.ETMList);
         // list index starts at 0
 
-        /* iterates through children (checkboxes) of VBox and prints their id
+        iterates through children (checkboxes) of VBox and prints their id
         for (int i = 0; i < CheckBoxContainer.getChildren().size(); i++) {
             System.out.println(CheckBoxContainer.getChildren().get(i).getId());
-        } */
+        }
     }
 
     public void save() {
@@ -103,4 +104,5 @@ public class FieldController {
         Alert alert = new Alert(Alert.AlertType.ERROR, "Warning: Value has not been entered for \n" + note);
         alert.showAndWait();
     }
+    */
 }

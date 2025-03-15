@@ -1,6 +1,6 @@
 package com.database;
 
-import javafx.event.ActionEvent;
+/*import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,7 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.DirectoryChooser;
-import javafx.stage.Stage;
+import javafx.stage.Stage; */
 import org.h2.tools.RunScript;
 
 import java.awt.Dimension;
@@ -24,7 +24,9 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ResourceBundle;
 
-public class ViewController implements Initializable {
+public class ViewController //implements Initializable
+{
+    /*
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     int screenWidth = (int) screenSize.getWidth();
     int screenHeight = (int) screenSize.getHeight();
@@ -134,4 +136,6 @@ public class ViewController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {}
+
+     */
 }

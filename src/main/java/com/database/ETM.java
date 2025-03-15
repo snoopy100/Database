@@ -5,12 +5,12 @@
 
 package com.database;
 
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.layout.VBox;
+//import javafx.scene.control.CheckBox;
+//import javafx.scene.control.ComboBox;
+//import javafx.scene.layout.VBox;
 
 public class ETM {
-    VBox box;
+    /*VBox box;
     ComboBox dropDown;
     boolean[] response;
     static String[] ETMList = {"99203",
@@ -48,4 +48,5 @@ public class ETM {
     public int getCode() {
         return this.selectedCode;
     }
+     */
 }
