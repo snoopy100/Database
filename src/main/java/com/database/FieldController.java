@@ -111,13 +111,12 @@ public class FieldController {
         System.out.println(queryString.toString());
 
         try {
-            ViewController con = new ViewController();
-            // String dbPath = "jdbc:h2:~/Desktop/myDB/myDB";
+            String dbPath = "~/Desktop/myDB/myDB";
             File file = new File("DBName.txt");
             BufferedReader bufferedReadereader = new BufferedReader(new FileReader(file));
             String dbName = bufferedReadereader.readLine();
 
-            Connection connection = DriverManager.getConnection("jdbc:" + "h2:" + con.dbPath);
+            Connection connection = DriverManager.getConnection("jdbc:" + "h2:" + dbPath);
             Statement s = connection.createStatement();
             ResultSet resultset = s.executeQuery(queryString.toString());
             while (resultset.next()) {
