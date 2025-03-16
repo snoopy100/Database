@@ -51,7 +51,6 @@ public class ViewController implements Initializable {
         stage.show();
     }
 
-
     @FXML
     public void select(Event e) {
         DirectoryChooser chooser = new DirectoryChooser();

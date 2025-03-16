@@ -19,30 +19,38 @@ import java.util.ResourceBundle;
 
 public class SearchController implements Initializable {
     @FXML TableView<PatientFile> tableView;
-
+    String path;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-        File dbFile = new File("dbName.txt");
-        BufferedReader br = new BufferedReader(new FileReader(dbFile));
-        String path = br.readLine();
-
-        Connection connection = DriverManager.getConnection("jdbc:h2:" + path);
-        Statement s = connection.createStatement();
-        ResultSet resultSet = s.executeQuery("select * from myTable");
-        while (resultSet.next()) {
-            System.out.println(resultSet.getString(1));
-        }
-        System.out.print("connectin  is valid : " + connection.isValid(20));
-    } catch (Exception e) {e.printStackTrace();}
-        update();
+            File dbFile = new File("dbName.txt");
+            BufferedReader br = new BufferedReader(new FileReader(dbFile));
+            String path = br.readLine();
+            update();
+        } catch(Exception e) {e.printStackTrace();}
     }
 
     @FXML
     public void update() {
-        ObservableList<PatientFile> data = FXCollections.observableArrayList();
-        data.add(new PatientFile("1", "2", "3", "4", "5"));
+        try {
+            File dbFile = new File("dbName.txt");
+            BufferedReader br = new BufferedReader(new FileReader(dbFile));
+            String path = br.readLine();
 
-        tableView.setItems(data);
+            //------------------------
+            ObservableList<PatientFile> data = FXCollections.observableArrayList();
+            data.add(new PatientFile("1", "2", "3", "4", "5"));
+            Connection connection = DriverManager.getConnection("jdbc:h2:" + path);
+            Statement s = connection.createStatement();
+            ResultSet resultSet = s.executeQuery("select * from myTable");
+            while (resultSet.next()) {
+                data.add(new PatientFile(resultSet.getString(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getString(4),
+                        resultSet.getString(5)));
+            }
+            tableView.setItems(data);
+        } catch (Exception e) {e.printStackTrace();}
     }
 }

@@ -25,7 +25,7 @@ public class FieldHelper {
             "99231",
             "99232",
             "99233"};
-    int selectedCode;
+    String selectedCode;
 
     public FieldHelper(VBox box, ComboBox dropDown) {
         this.box = box;
@@ -42,10 +42,10 @@ public class FieldHelper {
     }
 
     public void setCode() {
-        this.selectedCode = Integer.parseInt(dropDown.getValue().toString());
+        this.selectedCode = dropDown.getValue().toString();
     }
 
-    public int getCode() {
+    public String getCode() {
         return this.selectedCode;
     }
 }

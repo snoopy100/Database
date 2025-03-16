@@ -19,13 +19,13 @@
     </HBox>
     <TableView layoutX="20.0" layoutY="69.0" AnchorPane.bottomAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.topAnchor="69" fx:id="tableView">
         <columns>
-            <TableColumn prefWidth="75.0" text="Date" fx:id="date">
+            <TableColumn prefWidth="100" text="Date" fx:id="date">
                 <cellValueFactory>
                     <PropertyValueFactory property="date" />
                 </cellValueFactory>
             </TableColumn>
 
-            <TableColumn prefWidth="75.0" text="Name" fx:id="name">
+            <TableColumn prefWidth="100" text="Name" fx:id="name">
                 <cellValueFactory>
                     <PropertyValueFactory property="name" />
                 </cellValueFactory>

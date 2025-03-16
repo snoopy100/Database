@@ -11,9 +11,9 @@ public class PatientFile {
 
     public PatientFile() {}
 
-    public PatientFile(String name, String date, String mrn, String etm, String procedures) {
-        this.name = new SimpleStringProperty(name);
+    public PatientFile(String date, String name, String mrn, String etm, String procedures) {
         this.date = new SimpleStringProperty(date);
+        this.name = new SimpleStringProperty(name);
         this.mrn = new SimpleStringProperty(mrn);
         this.etm = new SimpleStringProperty(etm);
         this.procedures = new SimpleStringProperty(procedures);
