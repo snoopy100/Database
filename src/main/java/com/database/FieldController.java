@@ -3,13 +3,11 @@ package com.database;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
-import org.h2.tools.RunScript;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -18,9 +16,9 @@ import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class FieldController {
+    String dbPath;
     @FXML TextField MRNField;
     @FXML DatePicker dateField;
     @FXML TextField nameField;
@@ -31,7 +29,7 @@ public class FieldController {
     @FXML Button saveButton;
 
     public void initialize() {
-	    dropDown.getItems().setAll(ETM.ETMList);
+	    dropDown.getItems().setAll(FieldHelper.ETMList);
         // list index starts at 0
 
         /* iterates through children (checkboxes) of VBox and prints their id
@@ -81,8 +79,8 @@ public class FieldController {
         }
 
         // Create ETM instance and print checkbox responses
-        ETM etm = new ETM(CheckBoxContainer, dropDown);
-        etm.printResponse();
+        FieldHelper fieldHelper = new FieldHelper(CheckBoxContainer, dropDown);
+        fieldHelper.printResponse();
         // Convert ArrayList to String array and call nullPrompt
         if (procedures.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Don't forget to check off all the procedure completed");
@@ -93,7 +91,7 @@ public class FieldController {
             nullPrompt(nullResponses.toArray(new String[0]));
             return;
         }
-        etm.setCode();
+        fieldHelper.setCode();
         // now the entries shoudl have been filled
 
         // now implement savig entry to sql query then runningit against h2 databse
@@ -109,21 +107,21 @@ public class FieldController {
 
         StringBuilder queryString = new StringBuilder();
         queryString.append("INSERT INTO myTable (Date, Name, ETM_Visit, MRN, Proc) VALUES ");
-        queryString.append("('" + dateField.getValue().toString() + "', '" + nameField.getText() + "', " + etm.getCode() + ", '" + MRNField.getText() + "', '" + etmString + "');");
+        queryString.append("('" + dateField.getValue().toString() + "', '" + nameField.getText() + "', " + fieldHelper.getCode() + ", '" + MRNField.getText() + "', '" + etmString + "');");
+        //queryString.append("show tables;");
 
         System.out.println(queryString.toString());
 
         try {
-            String dbPath = "~/Desktop/myDB/myDB";
-            /* File file = new File("DBName.txt");
+            File file = new File("DBName.txt");
             BufferedReader bufferedReadereader = new BufferedReader(new FileReader(file));
-            String dbName = bufferedReadereader.readLine(); */
+            String dbPath = bufferedReadereader.readLine();
 
             Connection connection = DriverManager.getConnection("jdbc:" + "h2:" + dbPath);
             System.out.println("jdbc:" + "h2:" + dbPath);
             Statement s = connection.createStatement();
+            //System.out.println(s.executeQuery(queryString.toString()).getString(1));
             s.executeUpdate(queryString.toString());
-
             s = connection.createStatement();
             ResultSet resultSet = s.executeQuery("select * from myTable");
             while (resultSet.next()) {

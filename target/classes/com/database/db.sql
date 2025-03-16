@@ -1,4 +1,3 @@
-
 CREATE TABLE IF NOT EXISTS myTable (
     Date VARCHAR(255),
     Name VARCHAR(255),

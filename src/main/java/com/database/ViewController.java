@@ -37,8 +37,8 @@ public class ViewController implements Initializable {
     @FXML Button changeButton;
 
     DirectoryChooser chooser;
-    String fileDir = "~";
-    String dbName;
+    String fileDir = "~/Desktop";
+    String dbName = "myDB";
     public String dbPath;
 
     public void goToField(ActionEvent actionEvent) throws IOException {
@@ -63,40 +63,12 @@ public class ViewController implements Initializable {
 
     @FXML
     public int open(ActionEvent actionEvent) throws Exception {
-        File dbFile = new File("DBName.txt");
-        BufferedReader br = new BufferedReader(new FileReader(dbFile));
-        if (dbFile.exists()) {
-            dbName = br.readLine();
-        } else {
-            dbName = null;
-        }
-
-        if (fileDir == "~") {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Open database? " +"\n Path to database has not been selected", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
-            alert.showAndWait();
-
-            if (alert.getResult() != ButtonType.YES) {
-                return 0;
-            }
-        }
-
-        if (dbName == null) {
-            Alert alert = new Alert(Alert.AlertType.WARNING, "Open database? " +"\n Name for database has not been selected", ButtonType.YES, ButtonType.NO);
-            alert.showAndWait();
-
-            if (alert.getResult() == ButtonType.YES) {
-                dbName = "myDB";
-            } else {
-                return 0;
-            }
-        }
-
         try {
             // String dbPath = "jdbc:h2:~/Desktop/myDB/myDB";
-            File file = new File("DBName.txt");
+
+            File file = new File("dbName.txt");
             BufferedReader bufferedReadereader = new BufferedReader(new FileReader(file));
-            String dbName = bufferedReadereader.readLine();
-            dbPath = fileDir + "/" + dbName;
+            this.dbPath = fileDir + "/" + dbName;
             String scriptPath = "src/main/resources/com/database/db.sql";
 
             Connection connection = DriverManager.getConnection("jdbc:h2:" + dbPath);
@@ -107,8 +79,15 @@ public class ViewController implements Initializable {
             while (resultset.next()) {
                 System.out.println(resultset.getString(1));
             }
-            System.out.print("connectin  is valid : " + connection.isValid(20));
+            System.out.println("connectin  is valid : " + connection.isValid(20));
         } catch (Exception e) {e.printStackTrace();}
+
+        File file = new File("dbName.txt");
+        try {
+            FileWriter writer = new FileWriter(file);
+            writer.write(dbPath);
+            writer.close();
+        } catch (IOException e) {e.printStackTrace();}
 
         goToField(actionEvent);
         return 0;
@@ -124,13 +103,6 @@ public class ViewController implements Initializable {
 
         dbName = dialog.getResult();
         System.out.println(dbName);
-
-        File file = new File("DBName.txt");
-        try {
-            FileWriter writer = new FileWriter(file);
-            writer.write(dbName);
-            writer.close();
-        } catch (IOException e) {e.printStackTrace();}
     }
 
     @Override

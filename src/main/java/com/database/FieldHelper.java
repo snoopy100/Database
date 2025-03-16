@@ -9,7 +9,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.VBox;
 
-public class ETM {
+public class FieldHelper {
     VBox box;
     ComboBox dropDown;
     boolean[] response;
@@ -27,7 +27,7 @@ public class ETM {
             "99233"};
     int selectedCode;
 
-    public ETM(VBox box, ComboBox dropDown) {
+    public FieldHelper(VBox box, ComboBox dropDown) {
         this.box = box;
         boolean[] response = new boolean[box.getChildren().size()];
         this.dropDown = dropDown;
