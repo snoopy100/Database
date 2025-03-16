@@ -1,18 +1,21 @@
 package com.database;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import javafx.stage.Stage;
 import org.h2.tools.RunScript;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.io.IOException;
+import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -105,22 +108,26 @@ public class FieldController {
         }
 
         StringBuilder queryString = new StringBuilder();
-        queryString.append("INSERT INTO myTable (Date, Name, ETM_Visit, MRN, ETM_Visit,) VALUES ");
-        queryString.append("(" + dateField.getValue().toString() + ", " + nameField.getText() + ", " + etm.getCode() + ", " + MRNField.getText() + "," + etmString + ");");
+        queryString.append("INSERT INTO myTable (Date, Name, ETM_Visit, MRN, Proc) VALUES ");
+        queryString.append("('" + dateField.getValue().toString() + "', '" + nameField.getText() + "', " + etm.getCode() + ", '" + MRNField.getText() + "', '" + etmString + "');");
 
         System.out.println(queryString.toString());
 
         try {
             String dbPath = "~/Desktop/myDB/myDB";
-            File file = new File("DBName.txt");
+            /* File file = new File("DBName.txt");
             BufferedReader bufferedReadereader = new BufferedReader(new FileReader(file));
-            String dbName = bufferedReadereader.readLine();
+            String dbName = bufferedReadereader.readLine(); */
 
             Connection connection = DriverManager.getConnection("jdbc:" + "h2:" + dbPath);
+            System.out.println("jdbc:" + "h2:" + dbPath);
             Statement s = connection.createStatement();
-            ResultSet resultset = s.executeQuery(queryString.toString());
-            while (resultset.next()) {
-                System.out.println(resultset.getString(1));
+            s.executeUpdate(queryString.toString());
+
+            s = connection.createStatement();
+            ResultSet resultSet = s.executeQuery("select * from myTable");
+            while (resultSet.next()) {
+                System.out.println(resultSet.getString(1));
             }
             System.out.print("connectin  is valid : " + connection.isValid(20));
         } catch (Exception e) {e.printStackTrace();}
@@ -135,5 +142,15 @@ public class FieldController {
         }
         Alert alert = new Alert(Alert.AlertType.ERROR, "Warning: Value has not been entered for \n" + note);
         alert.showAndWait();
+    }
+
+    public void view(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(Application.class.getResource("Search.fxml"));
+        AnchorPane root = loader.load();
+        Scene scene = new Scene(root);
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 }

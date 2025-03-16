@@ -99,7 +99,7 @@ public class ViewController implements Initializable {
             dbPath = fileDir + "/" + dbName;
             String scriptPath = "src/main/resources/com/database/db.sql";
 
-            Connection connection = DriverManager.getConnection("jdbc:" + "h2:" + dbPath);
+            Connection connection = DriverManager.getConnection("jdbc:h2:" + dbPath);
             FileReader reader = new FileReader(scriptPath);
             RunScript.execute(connection, reader);
             Statement s = connection.createStatement();

@@ -7,7 +7,7 @@
 <AnchorPane fx:id="pane" prefHeight="600" prefWidth="400" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.database.FieldController">
    <children>
    <HBox alignment="TOP_CENTER" layoutX="25.0" layoutY="14.0" prefHeight="40.0" prefWidth="350.0" style="-fx-background-color: lightgray;">
-      <Button fx:id="viewButton" mnemonicParsing="false" text="View Other Entries">
+      <Button fx:id="viewButton" mnemonicParsing="false" text="View Other Entries" onAction="#view">
          <HBox.margin>
             <Insets right="20.0" />
          </HBox.margin></Button>
