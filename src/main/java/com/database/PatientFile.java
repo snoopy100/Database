@@ -2,6 +2,8 @@ package com.database;
 
 import javafx.beans.property.SimpleStringProperty;
 
+import java.sql.Date;
+
 public class PatientFile {
     private SimpleStringProperty name;
     private SimpleStringProperty date;
@@ -17,6 +19,18 @@ public class PatientFile {
         this.mrn = new SimpleStringProperty(mrn);
         this.etm = new SimpleStringProperty(etm);
         this.procedures = new SimpleStringProperty(procedures);
+    }
+
+    public int compare(PatientFile other) {
+        for (int i = 0; i < getDate().toCharArray().length; i++) {
+            char c = getDate().toCharArray()[i];
+            if (c > other.getDate().toCharArray()[i]) {
+                return 1;
+            } else if (c < other.getDate().toCharArray()[i]) {
+                return -1;
+            }
+        }
+        return 0;
     }
 
     public String getName() {
