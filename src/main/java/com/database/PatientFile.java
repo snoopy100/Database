@@ -25,9 +25,9 @@ public class PatientFile {
         for (int i = 0; i < getDate().toCharArray().length; i++) {
             char c = getDate().toCharArray()[i];
             if (c > other.getDate().toCharArray()[i]) {
-                return 1;
-            } else if (c < other.getDate().toCharArray()[i]) {
                 return -1;
+            } else if (c < other.getDate().toCharArray()[i]) {
+                return 1;
             }
         }
         return 0;
