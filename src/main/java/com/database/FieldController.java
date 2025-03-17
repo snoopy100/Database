@@ -16,8 +16,10 @@ import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class FieldController {
+    FieldHelper helper;
     String dbPath;
     @FXML TextField MRNField;
     @FXML DatePicker dateField;
@@ -30,6 +32,8 @@ public class FieldController {
 
     public void initialize() {
 	    dropDown.getItems().setAll(FieldHelper.ETMList);
+        helper = new FieldHelper(CheckBoxContainer, dropDown);
+        helper.setProcMap(this.getProcedureArray());
         // list index starts at 0
 
         /* iterates through children (checkboxes) of VBox and prints their id
@@ -150,5 +154,15 @@ public class FieldController {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
+    }
+
+    public HashMap<String, Boolean> getProcedureArray() {
+        HashMap<String, Boolean> proc = new HashMap<String, Boolean>();
+        for (int i = 0; i < CheckBoxContainer.getChildren().size(); i++) {
+            CheckBox box = (CheckBox) CheckBoxContainer.getChildren().get(i);
+
+            proc.put(box.getText(), box.isSelected());
+        }
+        return proc;
     }
 }

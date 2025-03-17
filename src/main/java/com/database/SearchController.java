@@ -23,6 +23,7 @@ import java.util.Comparator;
 import java.util.ResourceBundle;
 
 public class SearchController implements Initializable {
+    FieldHelper helper = new FieldHelper();
     @FXML TableView<PatientFile> tableView;
     @FXML MenuButton menu;
     MenuItem dateItem = new MenuItem("Date");
@@ -56,6 +57,15 @@ public class SearchController implements Initializable {
         } catch(Exception e) {e.printStackTrace();}
         instantiteList();
         menu.getItems().addAll(itemsList);
+
+        System.out.println("------------------------------------------------------------------------------------------------");
+
+        // why is the map not printing anything
+        for(String s : helper.getProcMap().keySet().toArray(new String[0])) {
+            System.out.println(helper.procMap);
+            System.out.println(s + " : " + helper.getProcMap().get(s));
+            System.out.println(helper.getProcMap() == null);
+        }
     }
 
     @FXML
@@ -72,6 +82,9 @@ public class SearchController implements Initializable {
             Statement s = connection.createStatement();
             ResultSet resultSet = s.executeQuery("select * from myTable");
             while (resultSet.next()) {
+                for (int i = 1; i < 6; i++) {
+                    System.out.println(resultSet.getString(i));
+                }
                 data.add(new PatientFile(resultSet.getString(1),
                         resultSet.getString(2),
                         resultSet.getString(3),

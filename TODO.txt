@@ -1,3 +1,4 @@
 - add columns (maybe dyanamically) to tabelview is search.fxml for procedures
 - add option to quickly import many rows by copying off wxcel spreadsheet as csv and parsing them and adding them to database.
 - finish search.fxml menubutton and textfield functinality for searching and sorting other parameters
+- find why and fix fieldhelper hashmap not working in search controller

@@ -9,8 +9,12 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.VBox;
 
+import java.util.HashMap;
+
 public class FieldHelper {
+    HashMap<String, Boolean> procMap = new HashMap<String, Boolean>();
     VBox box;
+
     ComboBox dropDown;
     boolean[] response;
     static String[] ETMList = {"99203",
@@ -27,11 +31,21 @@ public class FieldHelper {
             "99233"};
     String selectedCode;
 
+   public FieldHelper() {}
+
     public FieldHelper(VBox box, ComboBox dropDown) {
         this.box = box;
         boolean[] response = new boolean[box.getChildren().size()];
         this.dropDown = dropDown;
         // add stuf to add conents of boxes to array
+    }
+
+    public void setProcMap(HashMap<String, Boolean> map) {
+        this.procMap = map;
+    }
+
+    public HashMap<String, Boolean> getProcMap() {
+       return procMap;
     }
 
     public void printResponse() {
